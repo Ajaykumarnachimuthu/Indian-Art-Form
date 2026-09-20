@@ -48,7 +48,8 @@ export function initMap() {
   });
 
   // Crisp OpenStreetMap Basemap (100% Free, Zero API Keys, Zero Watermarks)
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    subdomains: 'abc',
     attribution: '',
     maxZoom: 18,
     updateWhenIdle: false, // Update continuously during panning to eliminate lag
