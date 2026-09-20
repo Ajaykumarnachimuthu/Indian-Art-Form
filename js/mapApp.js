@@ -4,9 +4,9 @@
  * interaction state machine, sidebar filters, ambient sound, and mobile drawer.
  */
 
-import { initMap, flyToIndiaOverview } from './mapEngine.js?v=2.1';
-import { initInteraction, dismissHeroPreview } from './mapInteraction.js?v=2.1';
-import { initFilters } from './mapFilters.js?v=2.1';
+import { initMap, flyToIndiaOverview } from './mapEngine.js?v=2.2';
+import { initInteraction, dismissHeroPreview } from './mapInteraction.js?v=2.2';
+import { initFilters } from './mapFilters.js?v=2.2';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Leaflet Map Engine

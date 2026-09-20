@@ -6,7 +6,7 @@
  */
 
 import { MAP_LOCATIONS, ART_TRAILS, ART_FORMS_LIST, ERAS_LIST, REGIONS_LIST } from './mapData.js';
-import { setMarkerVisibility, dimMarkersExcept, resetDimming, flyToIndiaOverview } from './mapEngine.js?v=2.1';
+import { setMarkerVisibility, dimMarkersExcept, resetDimming, flyToIndiaOverview } from './mapEngine.js?v=2.2';
 import { selectAndPreviewLocation, dismissHeroPreview } from './mapInteraction.js';
 
 let activeSearchQuery = '';

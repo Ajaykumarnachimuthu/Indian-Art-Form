@@ -7,7 +7,7 @@
  */
 
 import { MAP_LOCATIONS } from './mapData.js';
-import { flyToLocation, highlightMarker, resetHighlight, flyToIndiaOverview } from './mapEngine.js?v=2.1';
+import { flyToLocation, highlightMarker, resetHighlight, flyToIndiaOverview } from './mapEngine.js?v=2.2';
 
 // Interaction States
 export const STATES = {

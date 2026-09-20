@@ -47,9 +47,8 @@ export function initMap() {
     markerZoomAnimation: true
   });
 
-  // Crisp OpenStreetMap Basemap (100% Free, Zero API Keys, Zero Watermarks)
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    subdomains: 'abc',
+  // Crisp, Museum-Grade Esri World Topo Basemap (100% Free, Zero API Keys, Zero Watermarks, Zero 403 Blocks)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: '',
     maxZoom: 18,
     updateWhenIdle: false, // Update continuously during panning to eliminate lag
