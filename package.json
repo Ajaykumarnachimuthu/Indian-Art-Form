@@ -1,0 +1,17 @@
+{
+  "name": "india-living-canvas",
+  "version": "1.0.0",
+  "description": "India — A Living Canvas: Curatorial Exhibition & Digital Heritage Archive (Through Time, Across India, The Fusion Studio)",
+  "scripts": {
+    "dev": "python -m http.server 5500"
+  },
+  "keywords": [
+    "indian-art",
+    "cultural-heritage",
+    "interactive-map",
+    "fusion-studio",
+    "timeline"
+  ],
+  "author": "National Art Heritage Initiative",
+  "license": "MIT"
+}

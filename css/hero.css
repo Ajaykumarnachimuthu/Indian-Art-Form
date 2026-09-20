@@ -1,0 +1,278 @@
+/* ==========================================================================
+   INDIA — A LIVING CANVAS: HERO SECTION
+   Cinematic Editorial Presentation
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+}
+
+/* Atmospheric Layered Background */
+.hero-background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  filter: brightness(0.38) contrast(1.15) sepia(0.18);
+  transform: scale(1.04);
+  animation: heroKenBurns 24s ease-out infinite alternate;
+}
+
+@keyframes heroKenBurns {
+  0% { transform: scale(1.02) translateY(0); }
+  100% { transform: scale(1.08) translateY(-10px); }
+}
+
+.hero-overlay-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(18, 16, 14, 0.4) 0%,
+    rgba(18, 16, 14, 0.78) 70%,
+    rgba(18, 16, 14, 0.95) 100%
+  );
+  z-index: 2;
+}
+
+/* Subtle Indian Architectural Hairline Grid Overlay */
+.hero-overlay-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 160, 89, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 960px;
+  margin: 0 auto;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-eyebrow-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeInUp 1s var(--ease-spring) 0.2s forwards;
+}
+
+.hero-divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--antique-gold);
+  transform: rotate(45deg);
+}
+
+.hero-eyebrow {
+  font-family: var(--font-serif-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--antique-gold);
+  text-transform: uppercase;
+}
+
+.hero-main-title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transform: translateY(25px);
+  animation: heroFadeInUp 1s var(--ease-spring) 0.4s forwards;
+}
+
+.hero-subtitle-tag {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  color: #E8D3AB;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeInUp 1s var(--ease-spring) 0.6s forwards;
+}
+
+.hero-quote-ornament {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--antique-gold), transparent);
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: heroFadeInUp 1s var(--ease-spring) 0.7s forwards;
+}
+
+.hero-description {
+  font-family: var(--font-serif-body);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #DDD4C6;
+  max-width: 680px;
+  margin: 0 auto 2.8rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeInUp 1s var(--ease-spring) 0.8s forwards;
+}
+
+/* Call to Action Buttons */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: heroFadeInUp 1s var(--ease-spring) 1s forwards;
+}
+
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.05rem 2.4rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--terracotta);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  box-shadow: 0 4px 20px rgba(184, 67, 35, 0.4);
+  transition: all var(--transition-normal);
+}
+
+.btn-hero-primary:hover {
+  background: #C94C29;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(184, 67, 35, 0.6);
+  border-color: var(--antique-gold);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.05rem 2.4rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 2px;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-normal);
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--antique-gold);
+  color: #FFFFFF;
+  transform: translateY(-3px);
+}
+
+/* Animated Timeline Line Marker Descending from Hero */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+  opacity: 0;
+  animation: heroFadeInUp 1s var(--ease-spring) 1.2s forwards;
+}
+
+.hero-scroll-text {
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  margin-bottom: 0.8rem;
+}
+
+.hero-timeline-stem {
+  width: 2px;
+  height: 55px;
+  background: linear-gradient(180deg, var(--antique-gold) 0%, rgba(197, 160, 89, 0.2) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-timeline-stem::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #FFFFFF;
+  animation: stemDrop 2s ease-in-out infinite;
+}
+
+@keyframes stemDrop {
+  0% { transform: translateY(-20px); }
+  100% { transform: translateY(55px); }
+}
+
+@keyframes heroFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

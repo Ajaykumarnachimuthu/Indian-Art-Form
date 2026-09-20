@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="India — A Living Canvas: Through Time. An interactive museum-grade journey through the evolution of Indian art across 10,000 years, from prehistoric rock shelters to contemporary studios.">
+  <meta name="author" content="National Art Heritage Initiative">
+  <meta name="referrer" content="no-referrer">
+  <title>India — A Living Canvas | Through Time: Interactive Indian Art Timeline</title>
+
+  <!-- Google Fonts: Classical Inscriptions & Editorial Precision -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Component Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/filters.css">
+  <link rel="stylesheet" href="css/timeline.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Global Sticky Header & Museum Branding
+       ======================================================================== -->
+  <header class="site-header" id="site-header">
+    <div class="brand-identity">
+      <div class="brand-emblem" aria-hidden="true">
+        <!-- Ashok Chakra / Mandala Emblem SVG -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+          <line x1="19.07" y1="4.93" x2="4.93" y2="19.07"/>
+          <circle cx="12" cy="12" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <span class="brand-title">India — A Living Canvas</span>
+        <span class="brand-subtitle">Through Time</span>
+      </div>
+    </div>
+
+    <!-- Section Navigation (Centered) -->
+    <nav class="global-nav" aria-label="Main Exhibition Navigation">
+      <a href="index.html" class="nav-link active" aria-current="page">Through Time</a>
+      <a href="map.html" class="nav-link" id="nav-link-across-india">Across India</a>
+      <a href="fusion.html" class="nav-link" id="nav-link-fusion">Fusion</a>
+    </nav>
+
+    <!-- Right Corner Student Credit Badge -->
+    <div class="header-actions">
+      <div class="student-credit-badge">
+        <span class="student-name">AJAYKUMAR N</span>
+        <span class="student-reg">(RA2411003012107)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Persistent 3px Reading Progress Bar -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+  </div>
+
+  <main id="main-content">
+    <!-- ========================================================================
+         Cinematic Hero Section
+         ======================================================================== -->
+    <section class="hero-section" id="hero" aria-label="Exhibition Introduction">
+      <div class="hero-background-wrapper">
+        <!-- Authentic Heritage Image: Kailasa Monolith / Ajanta Classical Architecture -->
+        <img 
+          src="assets/images/hero-bg.jpg" 
+          alt="Monolithic Rock Architecture of India (Kailasa Temple, Ellora)" 
+          class="hero-background-image"
+        />
+        <div class="hero-overlay-scrim"></div>
+        <div class="hero-overlay-grid"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow-container">
+          <span class="hero-divider-diamond"></span>
+          <span class="hero-eyebrow">National Heritage Retrospective</span>
+          <span class="hero-divider-diamond"></span>
+        </div>
+
+        <h1 class="hero-main-title">India</h1>
+        <div class="hero-subtitle-tag">A Living Canvas</div>
+        <div class="hero-quote-ornament"></div>
+
+        <p class="hero-description">
+          “Thousands of years of artistic expression, from rock shelters to contemporary studios.”
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-hero-primary" id="btn-begin-journey">
+            Begin the Journey
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+          <button class="btn-hero-secondary" id="btn-explore-timeline">
+            Explore the Timeline
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Animated Descending Timeline Stem -->
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span class="hero-scroll-text">Chronology</span>
+        <div class="hero-timeline-stem"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         Floating Period Navigation Rail (Scroll Spy)
+         ======================================================================== -->
+    <nav class="timeline-period-rail" id="period-rail" aria-label="Chronological Era Navigator">
+      <div class="period-rail-container">
+        <div class="period-rail-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Eras
+        </div>
+        <div class="period-rail-items" id="period-rail-items">
+          <!-- Dynamically injected via navigation.js -->
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================================
+         Curatorial Control Panel: Search & Multi-Dimensional Filters
+         ======================================================================== -->
+    <section class="curatorial-control-panel" id="curatorial-controls" aria-label="Timeline Filtering & Search">
+      <div class="control-panel-header">
+        <!-- Live Search Field -->
+        <div class="search-box-wrapper">
+          <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="search" 
+            id="timeline-search-input" 
+            class="timeline-search-input" 
+            placeholder="Search Indian art, artists, traditions, periods, materials..." 
+            aria-label="Search Indian Art Timeline"
+          />
+          <button class="search-clear-btn" id="search-clear-btn" aria-label="Clear Search Input">✕</button>
+        </div>
+
+        <!-- Dynamic Results Counter -->
+        <div class="results-stats-badge" id="results-stats-badge">
+          Displaying <strong>24</strong> of <strong>24</strong> Milestones
+        </div>
+      </div>
+
+      <!-- Filter Categories -->
+      <div class="filter-dimensions-container">
+        <!-- Art Forms -->
+        <div class="filter-dimension-row">
+          <span class="filter-dimension-label">Art Form</span>
+          <div class="filter-chips-list" id="art-form-filters">
+            <!-- Dynamically populated via filterSearch.js -->
+          </div>
+        </div>
+
+        <!-- Geographic Regions -->
+        <div class="filter-dimension-row">
+          <span class="filter-dimension-label">Region</span>
+          <div class="filter-chips-list" id="region-filters">
+            <!-- Dynamically populated via filterSearch.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empty State Container -->
+    <div class="timeline-empty-state" id="timeline-empty-state" role="alert">
+      <div class="empty-state-icon">🏛️</div>
+      <h3 class="empty-state-title">No Milestones Found</h3>
+      <p class="empty-state-text">No artworks or monuments matched your selected filters or search terms.</p>
+      <button class="empty-state-reset-btn" id="empty-state-reset-btn">Reset All Filters</button>
+    </div>
+
+    <!-- ========================================================================
+         Main Vertical Timeline Section
+         ======================================================================== -->
+    <section class="timeline-main-section" id="timeline-container" aria-label="Interactive Historical Timeline">
+      <!-- Dynamically populated with alternating grand/refined milestone cards via timeline.js -->
+    </section>
+
+    <!-- ========================================================================
+         Continue The Journey (End Section / Activities 2 & 3)
+         ======================================================================== -->
+    <section class="continue-journey-section" id="continue-journey" aria-label="Next Exhibition Modules">
+      <div class="continue-container">
+        <span class="continue-label">Exhibition Continuation</span>
+        <h2 class="continue-title">Continue the Journey</h2>
+        <p class="continue-desc">
+          Expand your exploration from chronological time to geographic diversity across India’s regions and studio synthesis.
+        </p>
+
+        <div class="activity-cards-grid">
+          <!-- Activity 2 Card -->
+          <article class="activity-card">
+            <span class="activity-badge">Activity 2</span>
+            <h3 class="activity-title">Across India</h3>
+            <p class="activity-desc">
+              Explore regional heritage, geographic clusters, temple architecture, and living vernacular traditions across Northern, Southern, Eastern, Western, and Central India.
+            </p>
+            <a href="map.html" class="activity-btn" id="btn-activity-2">
+              Explore India
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+
+          <!-- Activity 3 Card -->
+          <article class="activity-card">
+            <span class="activity-badge">Activity 3</span>
+            <h3 class="activity-title">Create the Fusion</h3>
+            <p class="activity-desc">
+              Step into the digital studio to combine indigenous tribal motifs, Mughal fine lines, and classical iconography to compose your own modern Indian art fusion.
+            </p>
+            <a href="fusion.html" class="activity-btn" id="btn-activity-3">
+              Enter The Fusion Studio
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </article>
+        </div>
+
+        <button class="back-to-top-btn" id="back-to-top-btn" aria-label="Return to beginning of timeline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+          Return to Beginning
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       Level 2 & Level 3: Immersive Artifact Detail Viewer Modal
+       ======================================================================== -->
+  <div 
+    class="artifact-modal-overlay" 
+    id="artifact-modal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-title"
+  >
+    <div class="artifact-modal-window" id="modal-window">
+      <!-- Modal Header -->
+      <header class="modal-header-bar">
+        <div class="modal-header-tag">
+          <span class="hero-divider-diamond" aria-hidden="true"></span>
+          <span id="modal-era-label">Era</span>
+        </div>
+
+        <div class="modal-header-actions">
+          <div class="modal-nav-group" aria-label="Sequential Milestone Navigation">
+            <button class="modal-nav-btn" id="modal-prev-btn" aria-label="Previous Milestone (Left Arrow)">
+              ← Previous
+            </button>
+            <button class="modal-nav-btn" id="modal-next-btn" aria-label="Next Milestone (Right Arrow)">
+              Next →
+            </button>
+          </div>
+          <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Artifact Viewer (Escape)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="modal-scroll-body">
+        <!-- Showcase Split: High-res authentic image & curatorial summary -->
+        <div class="modal-showcase-grid">
+          <div class="modal-media-pane">
+            <img 
+              id="modal-artwork-image" 
+              src="" 
+              alt="Artifact image" 
+              class="modal-artwork-img"
+            />
+          </div>
+
+          <div class="modal-curatorial-pane">
+            <span class="modal-era-badge" id="modal-meta-tradition">Tradition</span>
+            <h2 class="modal-item-title" id="modal-title">Artifact Title</h2>
+            <div class="modal-item-date" id="modal-year">Date / Period</div>
+            <p class="modal-short-desc" id="modal-short-desc">Description</p>
+
+            <div class="modal-quick-meta-list">
+              <div class="modal-quick-meta-row">
+                <span class="modal-meta-key">Provenance:</span>
+                <span class="modal-meta-val" id="modal-meta-location">State, Region</span>
+              </div>
+              <div class="modal-quick-meta-row">
+                <span class="modal-meta-key">Medium:</span>
+                <span class="modal-meta-val" id="modal-meta-medium">Material</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Level 3 Curatorial Narrative & Art DNA -->
+        <div class="modal-curatorial-narrative-container">
+          <!-- ART DNA PANEL -->
+          <section class="art-dna-panel" aria-label="Art DNA Metadata">
+            <div class="art-dna-header">
+              <h3 class="art-dna-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
+                </svg>
+                Art DNA & Technical Anatomy
+              </h3>
+            </div>
+            <div class="art-dna-grid" id="modal-dna-grid">
+              <!-- Dynamically populated with Region, Material, Technique, Subject, Tradition, Period -->
+            </div>
+          </section>
+
+          <!-- Historical Context & Artistic Significance -->
+          <div class="modal-narrative-split">
+            <div class="narrative-card">
+              <h3 class="narrative-heading">Historical Context</h3>
+              <p class="narrative-text" id="modal-history-text"></p>
+            </div>
+            <div class="narrative-card">
+              <h3 class="narrative-heading">Aesthetic Significance & Legacy</h3>
+              <p class="narrative-text" id="modal-significance-text"></p>
+            </div>
+          </div>
+
+          <!-- Visual Characteristics -->
+          <section class="characteristics-container" aria-label="Visual Characteristics">
+            <h3 class="narrative-heading">Curatorial Visual Characteristics</h3>
+            <ul class="characteristics-list" id="modal-characteristics-list">
+              <!-- Dynamically populated -->
+            </ul>
+          </section>
+
+          <!-- Did You Know Box -->
+          <aside class="did-you-know-box" aria-label="Curatorial Insight">
+            <div class="did-you-know-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              Did You Know?
+            </div>
+            <p class="did-you-know-text" id="modal-did-you-know-text"></p>
+          </aside>
+
+          <!-- Museum Source Credit -->
+          <footer class="modal-source-credit" id="modal-source-credit">
+            <!-- Dynamically populated -->
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Museum Exhibition Global Footer -->
+  <footer class="museum-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-brand-title">INDIA — A LIVING CANVAS</span>
+        <span class="footer-course-tag">Section: THROUGH TIME | CLA-I — CO1 — 10 MARKS</span>
+      </div>
+      <div class="footer-legal">
+        Digital Heritage Archive & Curatorial Exhibition. Sourced from authoritative collections including National Museum New Delhi, Archaeological Survey of India, and UNESCO archives.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Bootstrap (ES6 Modules) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+/* ==========================================================================
+   INDIA — A LIVING CANVAS: ACROSS INDIA
+   Core Map Styling, Canvas Layout & Custom Markers
+   ========================================================================== */
+
+/* Main Map App Container */
+.map-app-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+  background-color: #EFECE1;
+  padding-top: 68px; /* Offset for site header */
+}
+
+/* Map Canvas Container */
+.map-canvas-container {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  background: #ECE4D6;
+  outline: none;
+  overflow: hidden;
+}
+
+#leaflet-art-map {
+  width: 100%;
+  height: 100%;
+  background: #ECE4D6;
+  z-index: 10;
+}
+
+/* Clean Leaflet Tile Pane with Direct GPU Compositing (Zero Filters) */
+.leaflet-tile-pane {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Lightweight Archival Atmosphere (Zero SVG turbulence shader load) */
+.map-texture-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 400;
+  background: radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(140, 100, 50, 0.05) 100%);
+  opacity: 0.8;
+}
+
+/* Archival Manuscript Edge Vignette */
+.map-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 450;
+  box-shadow: inset 0 0 60px rgba(78, 56, 32, 0.12);
+}
+
+/* Antique Compass Rose Ornament */
+.map-compass-rose {
+  position: absolute;
+  bottom: 60px;
+  right: 24px;
+  z-index: 460;
+  pointer-events: none;
+  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 2px 8px rgba(44, 30, 16, 0.2));
+  transform: translate3d(0, 0, 0);
+}
+
+/* Antique Cartouche / Title Ornament */
+.map-cartouche {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  z-index: 460;
+  pointer-events: none;
+  background: rgba(247, 243, 233, 0.94);
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  padding: 6px 14px;
+  box-shadow: 0 2px 10px rgba(50, 35, 20, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cartouche-title {
+  font-family: var(--font-serif-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.cartouche-subtitle {
+  font-family: var(--font-serif-body);
+  font-style: italic;
+  font-size: 0.7rem;
+  color: var(--antique-gold);
+  letter-spacing: 0.04em;
+}
+
+/* Clean Leaflet Control Overrides */
+.leaflet-control-zoom {
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+  background-color: #FFFFFF !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: var(--bg-parchment-warm) !important;
+  color: var(--terracotta) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(247, 245, 238, 0.88) !important;
+  font-size: 0.68rem !important;
+  color: var(--text-muted) !important;
+  padding: 2px 8px !important;
+}
+
+/* ==========================================================================
+   Three-Tier Custom Marker Hierarchy (Hero / Supporting / Quiet)
+   ========================================================================== */
+
+/* TIER 1: MAJOR ART DESTINATIONS (Hero circular photo marker) */
+.map-marker-major {
+  position: relative;
+  cursor: pointer;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.marker-pin-outer {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2.5px solid var(--antique-gold);
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(28, 24, 21, 0.28);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transform: translate3d(0, 0, 0);
+}
+
+.marker-pin-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.marker-pin-stem {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid var(--antique-gold);
+  z-index: 19;
+}
+
+/* Pulsing Aura Ring around Major Markers */
+.marker-aura-ring {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(197, 160, 89, 0.6);
+  animation: auraPulse 3s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform, opacity;
+}
+
+@keyframes auraPulse {
+  0% { transform: scale3d(0.9, 0.9, 1); opacity: 0.8; }
+  50% { transform: scale3d(1.35, 1.35, 1); opacity: 0.15; }
+  100% { transform: scale3d(1.6, 1.6, 1); opacity: 0; }
+}
+
+/* TIER 2: SECONDARY LOCATIONS (Refined medium circular marker) */
+.map-marker-secondary {
+  position: relative;
+  cursor: pointer;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.map-marker-secondary .marker-pin-outer {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 10px rgba(28, 24, 21, 0.22);
+}
+
+.map-marker-secondary .marker-pin-stem {
+  bottom: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #FFFFFF;
+}
+
+/* TIER 3: QUIET HISTORICAL / CRAFT CENTERS (Refined terracotta marker pin) */
+.map-marker-quiet {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.marker-quiet-pin {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(184, 67, 35, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.quiet-pin-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #FFFFFF;
+}
+
+.map-marker-quiet .marker-pin-stem {
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 5px solid var(--terracotta);
+  margin-top: -1px;
+}
+
+.map-marker-quiet:hover {
+  transform: translateY(-2px) scale(1.15);
+}
+
+.map-marker-quiet:hover .marker-quiet-pin {
+  background: var(--antique-gold);
+  border-color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.6);
+}
+
+.map-marker-quiet:hover .marker-pin-stem {
+  border-top-color: var(--antique-gold);
+}
+
+/* Marker Tooltip on Hover */
+.marker-label-tag {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(28, 24, 21, 0.85);
+  color: #FFFFFF;
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 50;
+}
+
+.map-marker-major:hover .marker-label-tag,
+.map-marker-secondary:hover .marker-label-tag,
+.map-marker-quiet:hover .marker-label-tag {
+  opacity: 1;
+}
+
+/* SELECTED MARKER STATE (Animated Halo & Expansion) */
+.marker-active .marker-pin-outer {
+  border-color: var(--terracotta) !important;
+  transform: scale(1.18);
+  box-shadow: 0 8px 24px rgba(184, 67, 35, 0.45);
+}
+
+.marker-active .marker-pin-stem {
+  border-top-color: var(--terracotta) !important;
+}
+
+.marker-active .marker-aura-ring {
+  border-color: var(--terracotta);
+  animation: selectedAura 1.4s infinite ease-out;
+}
+
+@keyframes selectedAura {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* DIMMED MARKER STATE (When trail or filter dims unselected items) */
+.marker-dimmed {
+  opacity: 0.28 !important;
+  filter: grayscale(0.8);
+  pointer-events: auto;
+}

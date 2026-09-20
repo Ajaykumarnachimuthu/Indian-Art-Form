@@ -1,0 +1,441 @@
+/* ==========================================================================
+   INDIA — A LIVING CANVAS: IMMERSIVE ARTIFACT DETAIL VIEWER (MODAL)
+   Level 2 & Level 3 Museum Exhibition Deep-Dive
+   ========================================================================== */
+
+/* Modal Backdrop & Container */
+.artifact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000;
+  background: rgba(18, 16, 14, 0.84);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s ease, visibility 0.22s;
+}
+
+.artifact-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.artifact-modal-window {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  box-shadow: var(--shadow-modal);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translate3d(0, 16px, 0) scale(0.98);
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+.artifact-modal-overlay.active .artifact-modal-window {
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Modal Header Bar */
+.modal-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.8rem;
+  background: #FAF8F2;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.modal-header-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--antique-gold);
+  font-weight: 700;
+}
+
+.modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.modal-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.modal-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  font-family: var(--font-serif-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.modal-nav-btn:hover:not(:disabled) {
+  background: var(--terracotta);
+  color: #FFFFFF;
+  border-color: var(--terracotta);
+}
+
+.modal-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.modal-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background: var(--terracotta);
+  color: #FFFFFF;
+  border-color: var(--terracotta);
+  transform: rotate(90deg);
+}
+
+/* Modal Scrollable Content Body */
+.modal-scroll-body {
+  overflow-y: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overscroll-behavior: contain;
+}
+
+/* Two-Column Showcase Area: Media + Essential Label */
+.modal-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  min-height: 480px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modal-media-pane {
+  position: relative;
+  background: #0E0C0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.modal-artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 520px;
+  transition: transform 0.4s ease;
+}
+
+.modal-curatorial-pane {
+  padding: 2.5rem 2.2rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-era-badge {
+  font-family: var(--font-serif-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: 0.4rem;
+}
+
+.modal-item-title {
+  font-family: var(--font-serif-display);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.modal-item-date {
+  font-family: var(--font-serif-body);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--antique-gold);
+  margin-bottom: 1.2rem;
+}
+
+.modal-short-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-quick-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.2rem;
+}
+
+.modal-quick-meta-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.modal-meta-key {
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 90px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.modal-meta-val {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Level 3: Deep Dive Curatorial Sections
+   ========================================================================== */
+.modal-curatorial-narrative-container {
+  padding: 2.5rem;
+  background: var(--bg-parchment);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ART DNA PANEL */
+.art-dna-panel {
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 4px;
+  padding: 1.8rem 2rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.art-dna-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.art-dna-title {
+  font-family: var(--font-serif-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.art-dna-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+
+.dna-chip {
+  background: var(--bg-parchment);
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: all var(--transition-fast);
+}
+
+.dna-chip:hover {
+  background: #FFFFFF;
+  border-color: var(--antique-gold);
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.15);
+}
+
+.dna-label {
+  font-family: var(--font-serif-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dna-value {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+/* Historical Context & Aesthetic Significance */
+.modal-narrative-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2rem;
+}
+
+.narrative-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 1.8rem;
+}
+
+.narrative-heading {
+  font-family: var(--font-serif-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.narrative-heading::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--terracotta);
+  border-radius: 1px;
+}
+
+.narrative-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* Visual Characteristics Bullet List */
+.characteristics-container {
+  background: #FFFFFF;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 1.8rem;
+}
+
+.characteristics-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.9rem 1.5rem;
+}
+
+.characteristics-item {
+  position: relative;
+  padding-left: 1.4rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.characteristics-item::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  font-size: 0.65rem;
+  color: var(--antique-gold);
+}
+
+/* “Did You Know?” Curatorial Discovery Box */
+.did-you-know-box {
+  background: #FCFAF4;
+  border-left: 4px solid var(--antique-gold);
+  border-radius: 0 4px 4px 0;
+  padding: 1.5rem 1.8rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.did-you-know-title {
+  font-family: var(--font-serif-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron-muted);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.did-you-know-text {
+  font-family: var(--font-serif-body);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+
+/* Image Attribution & Archival Source */
+.modal-source-credit {
+  background: #F4F1E8;
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 1rem 1.4rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.source-credit-label {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+}
