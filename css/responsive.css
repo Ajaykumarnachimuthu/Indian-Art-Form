@@ -50,14 +50,18 @@
   .student-credit-badge {
     padding: 0.32rem 0.85rem;
     border-radius: 9999px;
+    gap: 0.35rem;
   }
 
   .student-credit-badge .student-name {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
   }
 
   .student-credit-badge .student-reg {
-    display: none; /* keep header compact on phone viewports */
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
   }
 
   .brand-title {

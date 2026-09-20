@@ -37,6 +37,11 @@
   will-change: transform;
 }
 
+/* Remove watermark and attribution box */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
 /* Lightweight Archival Atmosphere (Zero SVG turbulence shader load) */
 .map-texture-overlay {
   position: absolute;

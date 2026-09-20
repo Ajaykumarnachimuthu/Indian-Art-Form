@@ -47,11 +47,10 @@ export function initMap() {
     markerZoomAnimation: true
   });
 
-  // Crisp, Museum-Grade CartoDB Voyager Basemap with aggressive tile pre-buffering
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 16,
+  // Crisp OpenStreetMap Basemap (100% Free, Zero API Keys, Zero Watermarks)
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '',
+    maxZoom: 18,
     updateWhenIdle: false, // Update continuously during panning to eliminate lag
     updateWhenZooming: false,
     keepBuffer: 8 // Cache adjacent tiles to prevent blank flashes
