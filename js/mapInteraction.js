@@ -7,7 +7,7 @@
  */
 
 import { MAP_LOCATIONS } from './mapData.js';
-import { flyToLocation, highlightMarker, resetHighlight, flyToIndiaOverview } from './mapEngine.js?v=2.2';
+import { flyToLocation, highlightMarker, resetHighlight, flyToIndiaOverview } from './mapEngine.js';
 
 // Interaction States
 export const STATES = {
@@ -20,14 +20,24 @@ let currentState = STATES.OVERVIEW;
 let selectedLocationId = null;
 let lastKnownCameraState = null;
 
-// DOM Element References
+// DOM Element References (Lazy-resolved for 100% resilience)
 let heroCardEl = null;
 let splitDetailOverlayEl = null;
 let btnBackToMapEl = null;
 
+export function getHeroCard() {
+  if (!heroCardEl) heroCardEl = document.getElementById('floating-hero-card');
+  return heroCardEl;
+}
+
+export function getSplitOverlay() {
+  if (!splitDetailOverlayEl) splitDetailOverlayEl = document.getElementById('map-split-detail-overlay');
+  return splitDetailOverlayEl;
+}
+
 export function initInteraction() {
-  heroCardEl = document.getElementById('floating-hero-card');
-  splitDetailOverlayEl = document.getElementById('map-split-detail-overlay');
+  heroCardEl = getHeroCard();
+  splitDetailOverlayEl = getSplitOverlay();
   btnBackToMapEl = document.getElementById('btn-back-to-map');
 
   // Hero Card Close Button
@@ -82,9 +92,10 @@ export function handleMarkerClick(locationId) {
  * Stage 1: FlyTo + Marker Aura + Floating Hero Preview Card
  */
 export function selectAndPreviewLocation(loc) {
+  const card = getHeroCard();
   // Collision Avoidance: If another hero card is open, dismiss it first
-  if (heroCardEl.classList.contains('visible')) {
-    heroCardEl.classList.remove('visible');
+  if (card && card.classList.contains('visible')) {
+    card.classList.remove('visible');
   }
 
   selectedLocationId = loc.id;
@@ -104,7 +115,7 @@ export function selectAndPreviewLocation(loc) {
   populateHeroCard(loc);
 
   setTimeout(() => {
-    heroCardEl.classList.add('visible');
+    getHeroCard()?.classList.add('visible');
   }, 250);
 }
 
@@ -112,7 +123,7 @@ export function selectAndPreviewLocation(loc) {
  * Dismisses floating hero card and returns to overview
  */
 export function dismissHeroPreview() {
-  heroCardEl.classList.remove('visible');
+  getHeroCard()?.classList.remove('visible');
   resetHighlight();
   selectedLocationId = null;
   currentState = STATES.OVERVIEW;
@@ -147,13 +158,13 @@ export function openSplitDetailView(locationId) {
   currentState = STATES.SPLIT_DETAIL;
 
   // Dismiss hero preview card
-  heroCardEl.classList.remove('visible');
+  getHeroCard()?.classList.remove('visible');
 
   // Populate Split-Screen Dossier
   populateSplitDetail(loc);
 
   // Trigger smooth transition
-  splitDetailOverlayEl.classList.add('active');
+  getSplitOverlay()?.classList.add('active');
 
   // Accessibility: Focus back button
   setTimeout(() => {
@@ -165,9 +176,10 @@ export function openSplitDetailView(locationId) {
  * Return to Map: Smoothly slides detail away and restores map focus
  */
 export function returnToMap() {
-  if (!splitDetailOverlayEl.classList.contains('active')) return;
+  const overlay = getSplitOverlay();
+  if (!overlay || !overlay.classList.contains('active')) return;
 
-  splitDetailOverlayEl.classList.remove('active');
+  overlay.classList.remove('active');
   currentState = STATES.HERO_PREVIEW;
 
   // Re-display hero card after returning to map
@@ -175,7 +187,7 @@ export function returnToMap() {
     const loc = MAP_LOCATIONS.find(l => l.id === selectedLocationId);
     if (loc) {
       setTimeout(() => {
-        heroCardEl.classList.add('visible');
+        getHeroCard()?.classList.add('visible');
       }, 350);
     }
   }
